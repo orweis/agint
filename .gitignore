@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Next.js / build output
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Environment
+.env
+.env*.local
+
+# Vercel
+.vercel/
+
+# Local PGlite database
+.data/
+
+# Test / tooling
+coverage/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Superpowers scratch
+.superpowers/
