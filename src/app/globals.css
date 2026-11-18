@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+/*
+ * AGINT's tokens. Tailwind's default palette is off: use these names only (`bg-panel`, `text-muted`,
+ * `border-rule`, `text-source`, `bg-lead-tint` ...). Every token has a dark value below, so components
+ * never write `dark:` or a literal colour.
+ *
+ * The map's grammar comes from the deck: sources are violet, leads and corroborated findings ember
+ * (dashed while a lead, solid once corroborated), services and resources a quiet slate, people teal.
+ * Red is only for danger: an unissued or shared key.
+ */
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+:root {
+  --paper: oklch(97.6% 0.006 285);
+  --panel: oklch(99.6% 0.002 285);
+  --fill: oklch(94.6% 0.01 285);
+  --rule: oklch(90.5% 0.012 285);
+  --edge: oklch(62% 0.025 285);
+  --ink: oklch(21% 0.03 285);
+  --ink-2: oklch(36% 0.03 285);
+  --muted: oklch(48% 0.025 285);
+  --faint: oklch(70% 0.02 285);
+
+  --source: oklch(52% 0.2 290);
+  --source-ink: oklch(46% 0.2 290);
+  --source-tint: oklch(94.5% 0.03 292);
+  --on-source: oklch(99% 0.004 290);
+
+  --lead: oklch(70% 0.16 52);
+  --lead-ink: oklch(50% 0.14 45);
+  --lead-tint: oklch(95.5% 0.03 62);
+
+  --person: oklch(60% 0.1 190);
+  --person-ink: oklch(44% 0.08 195);
+  --person-tint: oklch(95% 0.025 190);
+
+  --thing: oklch(66% 0.02 260);
+  --thing-ink: oklch(42% 0.025 260);
+  --thing-tint: oklch(94.5% 0.008 260);
+
+  --good: oklch(58% 0.13 155);
+  --good-ink: oklch(43% 0.11 155);
+  --good-tint: oklch(95% 0.03 155);
+
+  --danger: oklch(57% 0.21 25);
+  --danger-ink: oklch(49% 0.19 25);
+  --danger-tint: oklch(95.5% 0.022 20);
+
+  --info: oklch(62% 0.12 240);
+  --info-ink: oklch(46% 0.11 245);
+  --info-tint: oklch(95% 0.025 240);
+
+  --canvas: oklch(98.6% 0.004 285);
+  --canvas-grid: oklch(92% 0.01 285);
+  --focus: var(--source);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: oklch(17% 0.018 285);
+    --panel: oklch(21% 0.02 285);
+    --fill: oklch(25.5% 0.022 285);
+    --rule: oklch(31% 0.022 285);
+    --edge: oklch(55% 0.025 285);
+    --ink: oklch(95% 0.008 285);
+    --ink-2: oklch(85% 0.012 285);
+    --muted: oklch(72% 0.018 285);
+    --faint: oklch(52% 0.02 285);
+
+    --source: oklch(68% 0.17 290);
+    --source-ink: oklch(78% 0.13 290);
+    --source-tint: oklch(29% 0.07 290);
+    --on-source: oklch(17% 0.03 290);
+
+    --lead: oklch(74% 0.15 55);
+    --lead-ink: oklch(82% 0.12 60);
+    --lead-tint: oklch(30% 0.06 50);
+
+    --person: oklch(72% 0.1 190);
+    --person-ink: oklch(82% 0.08 190);
+    --person-tint: oklch(29% 0.04 195);
+
+    --thing: oklch(62% 0.02 260);
+    --thing-ink: oklch(80% 0.02 260);
+    --thing-tint: oklch(28% 0.015 260);
+
+    --good: oklch(70% 0.13 155);
+    --good-ink: oklch(80% 0.11 155);
+    --good-tint: oklch(29% 0.05 155);
+
+    --danger: oklch(66% 0.19 25);
+    --danger-ink: oklch(78% 0.13 25);
+    --danger-tint: oklch(30% 0.07 25);
+
+    --info: oklch(70% 0.11 240);
+    --info-ink: oklch(80% 0.09 240);
+    --info-tint: oklch(29% 0.05 245);
+
+    --canvas: oklch(15% 0.018 285);
+    --canvas-grid: oklch(22% 0.02 285);
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-*: initial;
+  --color-paper: var(--paper);
+  --color-panel: var(--panel);
+  --color-fill: var(--fill);
+  --color-rule: var(--rule);
+  --color-edge: var(--edge);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-source: var(--source);
+  --color-source-ink: var(--source-ink);
+  --color-source-tint: var(--source-tint);
+  --color-on-source: var(--on-source);
+  --color-lead: var(--lead);
+  --color-lead-ink: var(--lead-ink);
+  --color-lead-tint: var(--lead-tint);
+  --color-person: var(--person);
+  --color-person-ink: var(--person-ink);
+  --color-person-tint: var(--person-tint);
+  --color-thing: var(--thing);
+  --color-thing-ink: var(--thing-ink);
+  --color-thing-tint: var(--thing-tint);
+  --color-good: var(--good);
+  --color-good-ink: var(--good-ink);
+  --color-good-tint: var(--good-tint);
+  --color-danger: var(--danger);
+  --color-danger-ink: var(--danger-ink);
+  --color-danger-tint: var(--danger-tint);
+  --color-info: var(--info);
+  --color-info-ink: var(--info-ink);
+  --color-info-tint: var(--info-tint);
+  --color-canvas: var(--canvas);
+  --color-canvas-grid: var(--canvas-grid);
+  --color-white: oklch(100% 0 0);
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  @apply font-sans antialiased;
+  background: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+@utility link {
+  color: var(--source-ink);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  &:hover {
+    text-decoration-thickness: 2px;
+  }
+}
+
+/* Stat values: tabular figures. */
+@utility figure {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

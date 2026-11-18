@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+
+  ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      # --with-deps fetches system packages (mostly fonts) from Ubuntu's mirrors. When a runner
+      # cannot resolve them, apt retries for many minutes, so give it four and then install the
+      # browser alone: the runner image already carries the libraries Chromium needs.
+      - name: Install Chromium
+        run: |
+          if ! timeout 240 pnpm exec playwright install --with-deps chromium; then
+            echo "::warning::Could not install Chromium's system packages in time; using the runner's own libraries"
+            pnpm exec playwright install chromium
+          fi
+      - run: pnpm test:e2e
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            .data/e2e-report
+            .data/e2e-results
+          retention-days: 7
