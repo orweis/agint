@@ -3,7 +3,21 @@
 AGINT is one Next.js app: the web UI, the auth endpoints, `/mcp` and `/api/report` deploy together as
 Vercel Functions, with one Neon Postgres database. It is set up the same way as Phean.
 
+## Current state of the Vercel project
+
+| Setting | Value |
+| --- | --- |
+| Team | Permit (`team_5xJVYKrOpj2zXMJF6RzrtygY`) |
+| Project | `agint` (`prj_4N2O4TvnbJNVgtcXiBjPm8Q4KgnH`), Next.js, Node.js 22.x |
+| Git | `orweis/agint`, production branch `main`; other branches get previews |
+| Production domain | `agint-five.vercel.app` |
+| Database | Neon `agint-db` (free plan, `iad1`), Production and Preview, a database branch per preview, env prefix `DATABASE` |
+| Deployment protection | Vercel Authentication on previews only; production is public |
+| Environment variables | `BETTER_AUTH_SECRET` (sensitive), plus `DATABASE_URL` and the other `DATABASE_*` variables from Neon |
+
 ## Setup
+
+Done for the Permit project; kept here for recreating it elsewhere.
 
 1. **Project.** Permit team → New Project → import `orweis/agint` (framework Next.js, Node.js 22.x,
    production branch `main`). If the repository is not listed, add it under GitHub → Settings →
