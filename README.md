@@ -12,8 +12,8 @@ The `.gitignore` anticipates a Next.js / Vercel app with a local PGlite database
 
 ## Security
 
-This is a proof of concept and is not hardened for production use. No secrets belong in this repository: keep local configuration in `.env` files, which are git-ignored. Please report suspected vulnerabilities privately to the repository owner (for example via GitHub's private vulnerability reporting, if enabled) rather than in a public issue.
+This is a proof of concept and is not hardened for production use. No secrets belong in this repository: keep local configuration in `.env` / `.env.*` files, which are git-ignored (except `.env.example`, a committed template that must contain placeholders only). Please report suspected vulnerabilities privately to the repository owner (for example via GitHub's private vulnerability reporting, if enabled) rather than in a public issue.
 
 ## License
 
-No license has been specified yet. Until the owner adds one, all rights are reserved by default.
+No license has been specified yet. Until the owner adds one, the owner has not granted reuse rights beyond those in GitHub's Terms of Service.
